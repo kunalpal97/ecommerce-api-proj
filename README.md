@@ -29,35 +29,18 @@ CartGuard is a **minimal but production-hardened** e-commerce checkout backend t
 
 ## 🏗️ System Architecture
 
-```
-Client (cURL / Postman / Swagger / Automated Tests)
-                        │
-                        ▼
-        ┌───────────────────────────────┐
-        │   Layer 1: HTTP Routes        │  Thin controllers — validate input,
-        │   (FastAPI Routers)           │  return structured JSON responses
-        └──────────────┬────────────────┘
-                       │
-                       ▼
-        ┌───────────────────────────────┐
-        │   Layer 2: Services           │  ALL business logic lives here only
-        │   (checkout + idempotency)    │  Atomic checkout, SHA-256 key hashing
-        └──────────────┬────────────────┘
-                       │
-                       ▼
-        ┌───────────────────────────────┐
-        │   Layer 3: Repositories       │  Clean data access abstraction
-        │   (product / cart / order)    │  Swap DB without touching services
-        └──────────────┬────────────────┘
-                       │
-                       ▼
-        ┌───────────────────────────────┐
-        │   Layer 4: In-Memory Store    │  Python dicts + threading.Lock()
-        │   (Thread-Safe Database)      │  Race-condition safe, O(1) lookups
-        └───────────────────────────────┘
-```
+<p align="center">
+  <img src="checkout_sys_diagram.png" alt="CartGuard E-Commerce Checkout System Architecture" width="850" />
+</p>
 
-> **Why layered architecture?** Each layer has ONE responsibility. Swapping in-memory storage for PostgreSQL means rewriting only the Repository layer — routes, services, and tests stay completely untouched.
+The system follows a strict **Layered Clean Architecture** where concerns are separated into distinct boundaries:
+
+1. **Routes (HTTP Controllers):** Handles incoming REST requests, deserializes payloads, and returns HTTP responses. Thin layer with zero business logic.
+2. **Services (Core Business Logic):** Orchestrates the atomic checkout workflow, runs two-phase validation, checks idempotency keys via SHA-256 payload hashes, and enforces business invariants.
+3. **Repositories (Data Access Layer):** Abstract interface for read and write operations. Decouples business logic from the underlying storage mechanism.
+4. **In-Memory Store (Thread-Safe DB):** Dict-based storage protected by a mutex lock (`threading.Lock`) preventing race conditions and concurrent overselling.
+
+> **Why layered architecture?** Each layer has ONE responsibility. Swapping in-memory storage for PostgreSQL or MongoDB means rewriting only the Repository layer — routes, services, and automated tests stay completely untouched.
 
 ---
 
