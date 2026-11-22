@@ -36,7 +36,7 @@ class AppConfig:
     # ── Contact / Docs ────────────────────────────────────────────────────
     CONTACT: dict = {
         "name": "Commerce API Support",
-        "email": "support@commerce-api.local",
+        "email": "support@commerce-api.com",
     }
     LICENSE_INFO: dict = {
         "name": "MIT",

@@ -161,3 +161,25 @@ def test_checkout_with_empty_cart_returns_400(client: TestClient) -> None:
     data = response.json()
     assert data["error"] == "CART_EMPTY"
     assert cart_id in data["message"]
+
+
+# ── OpenAPI / Swagger Docs ───────────────────────────────────────────────────
+
+def test_openapi_schema_generation(client: TestClient) -> None:
+    """
+    GET /openapi.json must return 200 with valid schema.
+    Ensures contact email and OpenAPI metadata pass Pydantic validation.
+    """
+    response = client.get("/openapi.json")
+    assert response.status_code == 200
+    schema = response.json()
+    assert "openapi" in schema
+    assert "info" in schema
+    assert schema["info"]["title"] == "Commerce API"
+    assert schema["info"]["contact"]["email"] == "support@commerce-api.com"
+
+
+def test_docs_page_returns_200(client: TestClient) -> None:
+    """Swagger UI at /docs should return 200."""
+    response = client.get("/docs")
+    assert response.status_code == 200
