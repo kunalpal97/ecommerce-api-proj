@@ -1,0 +1,52 @@
+# ==============================================================================
+# .gitignore — CartGuard API
+# ==============================================================================
+
+# Virtual Environment (NEVER push to GitHub)
+.venv/
+venv/
+env/
+ENV/
+.env
+
+# Python Bytecode & Cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Pytest & Test Artifacts
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+*.cover
+nosetests.xml
+coverage.xml
+
+# Linters & Formatters
+.ruff_cache/
+.mypy_cache/
+
+# IDE & Editor Specific
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Build & Distribution
+build/
+dist/
+*.egg-info/
+*.egg
+
+# Temporary / Scratch Files
+*.bak
+*.tmp

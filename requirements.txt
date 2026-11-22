@@ -1,0 +1,18 @@
+# ============================================================
+# requirements.txt — Production dependencies
+# Python 3.12.3 | Commerce API
+# ============================================================
+# Pin exact versions for reproducible installs.
+# To upgrade: change version + test + commit.
+
+# --- Web Framework ---
+fastapi==0.115.5         # FastAPI: fast, async, Pydantic v2 built-in
+
+# --- ASGI Server ---
+uvicorn[standard]==0.32.1  # Production ASGI server (runs FastAPI)
+
+# --- Data Validation (FastAPI uses this internally) ---
+pydantic==2.10.2         # Pydantic v2: strict type validation, 10x faster than v1
+
+# --- Utilities ---
+python-multipart==0.0.20  # Required for form data support in FastAPI
