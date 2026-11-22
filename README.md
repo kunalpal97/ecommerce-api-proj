@@ -5,6 +5,14 @@
     Atomic Transactions · Idempotency · Thread-Safe Concurrency · 98% Test Coverage
   </p>
   <p align="center">
+    <a href="https://ecommerce-api-proj.onrender.com/docs"><img src="https://img.shields.io/badge/Live%20Demo-Swagger%20UI-success?style=for-the-badge&logo=swagger" /></a>
+    <a href="https://ecommerce-api-proj.onrender.com/health"><img src="https://img.shields.io/badge/Health%20Status-200%20OK-blue?style=for-the-badge" /></a>
+  </p>
+  <p align="center">
+    <strong>🌐 Live API Base URL:</strong> <a href="https://ecommerce-api-proj.onrender.com"><code>https://ecommerce-api-proj.onrender.com</code></a><br/>
+    <strong>📖 Interactive Swagger Docs:</strong> <a href="https://ecommerce-api-proj.onrender.com/docs"><code>https://ecommerce-api-proj.onrender.com/docs</code></a>
+  </p>
+  <p align="center">
     <img src="https://img.shields.io/badge/Python-3.12.3-blue?logo=python" />
     <img src="https://img.shields.io/badge/FastAPI-0.115.5-green?logo=fastapi" />
     <img src="https://img.shields.io/badge/Pydantic-v2.10-purple" />
